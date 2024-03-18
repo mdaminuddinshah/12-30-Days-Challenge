@@ -23,3 +23,10 @@ nama2()
 const strArr2 = require("./strArray")
 const nama3 = strArr2[1]
 nama3()
+
+const kira = require("./math")
+const tambah = kira.add(52,5)
+console.log(tambah)
+
+const tambah2 = kira.add(100,120)
+console.log(tambah2)
