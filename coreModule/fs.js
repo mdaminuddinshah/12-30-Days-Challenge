@@ -1,31 +1,11 @@
-// create file with type nul > filename
-// type nul > fileName
+const fs = require("fs")
 
-// callback
-
-function add(a,b){
-    const results = a * b
-    console.log(results)
+for(let i = 0; i < 5; i++){
+    fs.writeFile(`../testFolder/textFile_${i}.txt`, `Index file_${i}`, function(err){
+        if(err){
+            console.log('file error')
+        } else {
+            console.log(`file created_${i}`)
+        }
+    })
 }
-
-function callingCallback(a,b,callbacks){
-    callbacks(a,b)
-}
-
-callingCallback(2,6, add)
-
-callingCallback(56,100, function(a,b){
-    const results = a - b
-    console.log(results)
-})
-
-callingCallback(2134, 3432,function(a,b){
-    const results = a / b
-    console.log(results)
-})
-
-callingCallback(13334, 13412, (a,b) => {
-    const results = a + b
-    console.log(results)
-})
-
