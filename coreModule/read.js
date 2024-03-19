@@ -21,7 +21,7 @@ fs.mkdir(`../NewFolder${ranNum}`, {recursive: true} ,function(err){
     }
 })
 
-fs.writeFile(`../NewFolder${ranNum}/textFile_${ranNum}`, `Data ${ranNum}`, function(err){
+fs.writeFile(`../NewFolder${ranNum}/textFile_${ranNum}.txt`, `Data ${ranNum}`, function(err){
     if(err){
         console.log(err)
     } else {
