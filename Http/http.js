@@ -1,4 +1,6 @@
 const http = require("http")
+const fs = require("fs")
+const path = require("path")
 
 // send HTML CONTENT to client-side
 const server1 = http.createServer((req,res) => {
@@ -51,6 +53,12 @@ const test2 = http.createServer((req,res) => {
 
 test2.listen(1001)
 
+// create path for index.html with path core module
+const indexHtmlPath = path.join(__dirname, "../website/pages", "./index.html"   )
+
+// read file with fs core module = readFileSync
+const indexHtml = fs.readFileSync(indexHtmlPath,"utf-8")
+
 // how to get url and set different url with different HTML content to client-side
 const server4 = http.createServer((req,res) => {
     const url = req.url.toLowerCase()
@@ -59,7 +67,8 @@ const server4 = http.createServer((req,res) => {
     // 127.0.0.1:1002/
     if(url == "/"){
         res.writeHead(200, {"content-type": "text/html"})
-        res.write(`<h3 style="text-align:center; color:gray">This is Home</h3>`)
+        res.write(indexHtml)
+        console.log(indexHtml)
         res.end()
         return
          // return use here to stop function execution
