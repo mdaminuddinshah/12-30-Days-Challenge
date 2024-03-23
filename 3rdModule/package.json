@@ -9,5 +9,8 @@
     "start": "node index.js"
   },
   "author": "mdaminuddinshah",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "random-words": "^2.0.1"
+  }
 }
