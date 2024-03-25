@@ -33,12 +33,19 @@ app.get("/bmi-form.html", function(req, res){
     res.send(bmiFormFile);
 })
 
-app.get("/bmi-result.html", function(req,res){
+app.post("/bmi-result", function(req,res){
 
     // why req.query.bmi ?? why bmi ?? bmi is parameter from route calculate below
     // also bmi is parameter with value of a in calculate route
     // so, that means bmi = a, while a = divide
-    const nilai = req.query.bmi
+    // const nilai = req.query.bmi
+
+    const body = req.body
+    const weight = Number(body.weight)
+    const height = Number(body.height)
+    const div = weight / height
+    console.log(div)
+
     const pathResult = path.join(__dirname, "./pages", "./bmi-result.html")
     let readPath = fs.readFileSync(pathResult, "utf-8")
 
@@ -49,14 +56,15 @@ app.get("/bmi-result.html", function(req,res){
     // in this case, the variable nilai has a value of a which is divide in calculate route
     // so varibale nilai isnt empty, it has a value, so it is true
 
-    if(nilai){
+    if(div){
 
         // what replace() do ?? 
         // if the condition is true, then it replace the placeholder in html of result to nilai
         // nilai is set to be replace in html body if the condition is true
-        readPath = readPath.replace("[[bmi]]", nilai)
-    } else {
-
+        readPath = readPath.replace("[[bmi]]", div)
+    } 
+    else{
+        
         // if the confition is false, then  the placeholde rin html will be repoace with not found
         readPath = readPath.replace("[[bmi]]", "not found ")
     }
@@ -66,20 +74,21 @@ app.get("/bmi-result.html", function(req,res){
     res.send(readPath)
 })
 
-app.post("/calculate", function(req,res){
-    const data = req.body;
-    const divide = data.weight/ data.height
+// app.post("/calculate", function(req,res){
+//     const data = req.body;
+//     const weight = Number(data.weight);
+//     const height = Number(data.height);
+//     const div = (weight / (height * height)).toFixed(2);
 
-    // ini value untuk pass ke result.html
-    const a = divide
-    console.log(a)
-    // console.log(data);
-    // console.log(divide)
 
-    // what is "?bmi=" for ?? it is for parameter
-    // and as a value for parameter bmi
-    // so in above result.html we need to request to para, the parameter will carry value of a
-    res.redirect("/bmi-result.html" + "?bmi=" + a);
-})
+//     // ini value untuk pass ke result.html
+//     // console.log(data);
+//     // console.log(divide)
+
+//     // what is "?bmi=" for ?? it is for parameter
+//     // and as a value for parameter bmi
+//     // so in above result.html we need to request to para, the parameter will carry value of a
+//     res.redirect("/bmi-result.html");
+// })
 
 app.listen(1001)
