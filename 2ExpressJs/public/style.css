@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+
+body{
+    max-width: 500px;
+
+    /* center kan body */
+    margin: 10px auto;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+#form1 {
+    display: flex;
+    flex-direction: column;
+}
+
+#title1, #title2 {
+    /* center kan title */
+    margin: 10px auto
+}
+
+input {
+    padding: 5px 5px;
+    margin: 5px 5px;
+}
+
+#btn1 {
+    padding: 5px;
+    margin: 5px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+}
+
+#container1 {
+    border:1px solid black;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 10px;
+    width: 300px;
+}
